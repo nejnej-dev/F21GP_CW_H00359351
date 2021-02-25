@@ -11,7 +11,7 @@ public class BananaController : MonoBehaviour
     public GameObject goal;
 
     NavMeshAgent agent;
-    public float EnnemyDistanceRun = 4.0f;
+    public float EnnemyDistanceRun = 3.0f;
     public bool beEaten;
     public AudioSource jump;
     private float timeRemaining;
@@ -21,8 +21,7 @@ public class BananaController : MonoBehaviour
         agent = this.GetComponent<NavMeshAgent>();
         agent.SetDestination(goal.transform.position);
         beEaten = false;
-        timeRemaining = Random.Range(0.0f, 6.0f);
-        Thread.Sleep(Random.Range(0, 5000));
+        timeRemaining = Random.Range(3.0f, 9.0f);
     }
 
     void Update()
@@ -31,7 +30,7 @@ public class BananaController : MonoBehaviour
         if (!jump.isPlaying && timeRemaining <= 0)
         {
             jump.Play();
-            timeRemaining = Random.Range(3.0f, 6.0f);
+            timeRemaining = Random.Range(3.0f, 9.0f);
         }
         Vector3 ennemy = SelectNearestEnnemy();
         MoveBanana(ennemy);

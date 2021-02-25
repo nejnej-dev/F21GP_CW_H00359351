@@ -5,12 +5,16 @@ using UnityEngine.AI;
 
 public class BadMonkeyController : MonoBehaviour
 {
-    NavMeshAgent agent;
     private bool eat;
     public bool beAttacked;
+    private bool done;
     private float timeRemaining;
+
+    NavMeshAgent agent;
     private GameObject prey;
     public Animator animator;
+    public AudioSource gameOver;
+    public AudioSource explosion;
 
     void Start()
     {
@@ -19,13 +23,20 @@ public class BadMonkeyController : MonoBehaviour
         beAttacked = false;
         timeRemaining = 1;
         prey = null;
+        done = false;
     }
 
     void Update()
     {
+        if (beAttacked && done == false)
+        {
+            explosion.Play();
+            done = true;
+        }
         if (animator.GetBool("Attacked") == false)
         {
             beAttacked = false;
+            done = false;
         }
         SetTarget();
         CheckTimer();
@@ -42,6 +53,10 @@ public class BadMonkeyController : MonoBehaviour
             timeRemaining -= Time.deltaTime;
             if (timeRemaining <= 0)
             {
+                if (!gameOver.isPlaying)
+                {
+                    gameOver.Play();
+                }
                 Destroy(prey);
                 prey = null;
                 eat = false;

@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public float playerSpeed = 10.0f;
     public float playerRotationSpeed = 100.0f;
+    public AudioSource hit;
     void Start()
     {
     }
@@ -25,6 +26,10 @@ public class Player : MonoBehaviour
 
     private void HitBadMonkey(GameObject ennemy)
     {
+        if (!hit.isPlaying && ennemy.GetComponentInChildren<Animator>().GetBool("Attacked") == false)
+        {
+            hit.Play();
+        }
         ennemy.GetComponentInChildren<Animator>().SetBool("Attacked", true);
         ennemy.GetComponent<BadMonkeyController>().beAttacked = true;
     }

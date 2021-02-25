@@ -7,6 +7,8 @@ public class BananaSavedText : MonoBehaviour
 {
 	private int savedValue = 0;
 	public Text text = null;
+	public AudioSource win;
+
 	private void Start()
 	{
 		DrawScore();
@@ -14,6 +16,7 @@ public class BananaSavedText : MonoBehaviour
 
 	public void AddScore()
 	{
+		win.Play();
 		savedValue += 1;
 		DrawScore();
 	}
