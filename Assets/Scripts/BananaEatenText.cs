@@ -22,4 +22,9 @@ public class BananaEatenText : MonoBehaviour
 	{
 		text.text = "Banana eaten: " + eatenValue.ToString();
 	}
+
+	public int getScore()
+    {
+		return eatenValue;
+    }
 }

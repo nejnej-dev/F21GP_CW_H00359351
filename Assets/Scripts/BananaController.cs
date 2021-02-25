@@ -87,7 +87,7 @@ public class BananaController : MonoBehaviour
 
     private void ReachGoal()
     {
-        if (Vector3.Distance(transform.position, goal.transform.position) < 1)
+        if (Vector3.Distance(transform.position, goal.transform.position) < 1.5)
         {
             GameObject text = GameObject.FindGameObjectWithTag("Saved");
             text.GetComponent<BananaSavedText>().AddScore();

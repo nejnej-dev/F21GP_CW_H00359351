@@ -25,4 +25,9 @@ public class BananaSavedText : MonoBehaviour
 	{
 		text.text = "Banana saved: " + savedValue.ToString();
 	}
+
+	public int getScore()
+	{
+		return savedValue;
+	}
 }
